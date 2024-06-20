@@ -110,43 +110,49 @@
 </script>
 
 <!-- HTML template structure -->
-<div class="px-4 sm:px-6 lg:px-8">
-    <div class="sm:items-center sm:justify-end justify-between flex flex-row sm:flex-row">
+<div class="p-4 sm:px-6 lg:px-8">
+    <div class="sm:items-center sm:justify-end justify-between flex flex-row sm:flex-row mt-4  p-4 rounded-md bg-sky-100">
         <div class="sm:flex-auto">
-            <h1 class="font-extrabold text-xl leading-6 text-gray-900">Tasks</h1>
+            <h1 class="text-2xl font-extrabold leading-6 text-gray-900">Tasks</h1>
         </div>
         <div>
-            <button type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600" on:click={openAddModal}>
+            <button type="button" class="block rounded-md bg-sky-400 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600" on:click={openAddModal}>
                 Add Task
             </button>
         </div>
     </div>
 
-    <div class="mt-8">
+    <div class="mt-2 flow-root p-4 rounded-md bg-sky-100">
         {#if loading}
             <p>Loading...</p>
         {:else if error}
             <p>Error: {error.message}</p>
         {:else}
             <div class="overflow-x-auto">
-                <table class="min-w-full border-separate border-spacing-0">
+                <table class="min-w-full table-fixed divide-y divide-gray-300">
                     <thead>
                     <tr>
-                        <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8">Task ID</th>
-                        <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:table-cell">Task Name</th>
-                        <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell">Description</th>
-                        <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell">Assigned To</th>
-                        <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell">Priority</th>
-                        <th scope="col" class="sticky top-0 z-10 hidden border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell">Status</th>
-                        <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter">Deadline</th>
-                        <th scope="col" class="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 py-3.5 pl-3 pr-4 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8">
+                        <th scope="col" class="relative px-7 sm:w-12 sm:px-6">
+                            <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-sky-600">
+                        </th>
+                        <th scope="col" class="sticky px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Task ID</th>
+                        <th scope="col" class="sticky px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Task Name</th>
+                        <th scope="col" class="sticky px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+                        <th scope="col" class="sticky px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Assigned To</th>
+                        <th scope="col" class="sticky px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Priority</th>
+                        <th scope="col" class="sticky px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+                        <th scope="col" class="sticky px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Deadline</th>
+                        <th scope="col" class="sticky px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                             <span class="sr-only">Edit</span>
                         </th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="divide-y divide-gray-200 bg-white">
                     {#each tasks as task}
                         <tr>
+                            <td class="relative px-7 sm:w-12 sm:px-6">
+                                <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-sky-600">
+                            </td>
                             <td class="whitespace-nowrap border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">{task.id}</td>
                             <td class="hidden whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm text-gray-500 sm:table-cell">{task.name}</td>
                             <td class="hidden whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm text-gray-500 lg:table-cell">{task.description}</td>
@@ -155,8 +161,8 @@
                             <td class="whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm text-gray-500">{task.status}</td>
                             <td class="whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm text-gray-500">{task.deadline}</td>
                             <td class="whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm font-medium space-x-3">
-                                <button class="text-indigo-600 hover:text-indigo-900" on:click={() => openEditModal(task)}>Edit</button>
-                                <button class="text-red-600 hover:text-red-900" on:click={() => openDeleteModal(task)}>Delete</button>
+                                <button class="text-sky-400 hover:text-sky-900" on:click={() => openEditModal(task)}>Edit</button>
+                                <button class="text-red-400 hover:text-red-900" on:click={() => openDeleteModal(task)}>Delete</button>
                             </td>
                         </tr>
                     {/each}
